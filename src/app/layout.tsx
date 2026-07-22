@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="bn" className={`${tiroBangla.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-slate-50/50 text-slate-900 font-bengali selection:bg-emerald-200 selection:text-emerald-900">
+      <body className="min-h-full flex flex-col bg-slate-50/50 text-slate-900 font-bengali selection:bg-emerald-200 selection:text-emerald-900 overflow-x-hidden">
         
         {/* Subtle top gradient bar */}
         <div className="h-1 w-full bg-gradient-to-r from-emerald-400 via-teal-500 to-emerald-400"></div>
