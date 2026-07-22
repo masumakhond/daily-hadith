@@ -18,10 +18,14 @@ export default function ArchivePage() {
   }).filter(item => item.hadith !== null);
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8 md:py-12">
-      <div className="mb-10 text-center space-y-2">
-        <h1 className="text-3xl md:text-4xl font-bold text-slate-900">আর্কাইভ</h1>
-        <p className="text-slate-500">পূর্ববর্তী দিনের হাদিসসমূহ</p>
+    <div className="max-w-4xl mx-auto px-4 py-12 md:py-20 relative">
+      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-gradient-to-r from-emerald-100/40 via-teal-100/40 to-sky-100/40 blur-[100px] rounded-full -z-10"></div>
+      
+      <div className="mb-14 text-center space-y-4">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-800 to-slate-600 tracking-tight">
+          আর্কাইভ
+        </h1>
+        <p className="text-slate-500 font-medium text-lg tracking-wide">পূর্ববর্তী দিনের হাদিসসমূহ</p>
       </div>
       
       <div className="space-y-12">
