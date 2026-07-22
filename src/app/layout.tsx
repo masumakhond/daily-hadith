@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Noto_Sans_Bengali } from "next/font/google";
+import { Tiro_Bangla } from "next/font/google";
 import "./globals.css";
 import Link from 'next/link';
 import { Book } from 'lucide-react';
 
-const notoSansBengali = Noto_Sans_Bengali({
-  variable: "--font-noto-bengali",
+const tiroBangla = Tiro_Bangla({
+  variable: "--font-tiro-bangla",
   subsets: ["bengali"],
-  weight: ['400', '500', '600', '700'],
+  weight: ['400'],
 });
 
 export const metadata: Metadata = {
@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="bn" className={`${notoSansBengali.variable} h-full antialiased`}>
+    <html lang="bn" className={`${tiroBangla.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 font-bengali">
         <header className="bg-white border-b border-slate-200 sticky top-0 z-10">
           <div className="max-w-3xl mx-auto px-4 py-4 flex items-center justify-between">

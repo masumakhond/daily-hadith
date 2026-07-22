@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-noto-bengali);
-  --font-bengali: var(--font-noto-bengali);
+  --font-sans: var(--font-tiro-bangla);
+  --font-bengali: var(--font-tiro-bangla);
 }
 
 @layer base {
