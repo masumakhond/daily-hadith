@@ -66,11 +66,19 @@ export default function RootLayout({
         
         <footer className="bg-white/50 backdrop-blur-sm border-t border-slate-200/50 mt-auto relative z-10">
           <div className="max-w-4xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-slate-500 font-medium">
+            <p className="text-sm text-slate-500 font-medium text-center sm:text-left">
               সহীহ বুখারী এবং সহীহ মুসলিম থেকে সংগৃহীত।
             </p>
-            <p className="text-xs text-slate-400">
-              © {new Date().getFullYear()} আজকের হাদিস
+            <p className="text-xs text-slate-400 text-center sm:text-right">
+              © {new Date().getFullYear()}{' '}
+              <a 
+                href="https://www.facebook.com/masumbillahakhond" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="font-medium hover:text-emerald-600 transition-colors"
+              >
+                Masum Billah Akhond
+              </a>
             </p>
           </div>
         </footer>
