@@ -39,6 +39,9 @@ export default function RootLayout({
               <Link href="/search" className="text-sm font-semibold text-slate-500 hover:text-emerald-600 hover:bg-emerald-50 px-3 py-2 rounded-xl transition-all">
                 খুঁজুন
               </Link>
+              <Link href="/bookmarks" className="text-sm font-semibold text-slate-500 hover:text-emerald-600 hover:bg-emerald-50 px-3 py-2 rounded-xl transition-all">
+                সেইভড
+              </Link>
               <Link href="/archive" className="text-sm font-semibold text-slate-500 hover:text-emerald-600 hover:bg-emerald-50 px-3 py-2 rounded-xl transition-all">
                 আর্কাইভ
               </Link>

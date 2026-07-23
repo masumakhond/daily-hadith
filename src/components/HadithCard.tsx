@@ -1,11 +1,46 @@
 'use client';
 
 import { Hadith } from '@/lib/hadith';
-import { Share2, Copy, Check, Quote } from 'lucide-react';
-import { useState } from 'react';
+import { Share2, Copy, Check, Quote, Bookmark } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 export default function HadithCard({ hadith, dateLabel }: { hadith: Hadith; dateLabel?: string }) {
   const [copied, setCopied] = useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(false);
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem('bookmarks');
+      if (stored) {
+        const bookmarks = JSON.parse(stored) as string[];
+        if (bookmarks.includes(hadith.id)) {
+          setIsBookmarked(true);
+        }
+      }
+    } catch (e) {}
+  }, [hadith.id]);
+
+  const toggleBookmark = () => {
+    try {
+      const stored = localStorage.getItem('bookmarks');
+      let bookmarks = stored ? (JSON.parse(stored) as string[]) : [];
+      
+      if (isBookmarked) {
+        bookmarks = bookmarks.filter(id => id !== hadith.id);
+        setIsBookmarked(false);
+      } else {
+        if (!bookmarks.includes(hadith.id)) {
+          bookmarks.push(hadith.id);
+        }
+        setIsBookmarked(true);
+      }
+      
+      localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+      window.dispatchEvent(new Event('bookmarksUpdated'));
+    } catch (e) {
+      console.error('Failed to save bookmark', e);
+    }
+  };
 
   const formatSource = (source: string, book: number, hadithNum: number) => {
     const bookName = source === 'bukhari' ? 'সহীহ বুখারী' : 'সহীহ মুসলিম';
@@ -69,11 +104,23 @@ export default function HadithCard({ hadith, dateLabel }: { hadith: Hadith; date
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full md:w-auto">
             <button
               onClick={handleCopy}
-              className="inline-flex w-full sm:w-auto items-center justify-center px-5 py-2.5 space-x-2 text-sm font-semibold text-slate-600 bg-white hover:bg-slate-50 hover:text-emerald-600 rounded-xl transition-all duration-300 border border-slate-200 shadow-sm hover:shadow active:scale-95"
+              className="inline-flex w-full sm:w-auto items-center justify-center px-4 py-2.5 space-x-2 text-sm font-semibold text-slate-600 bg-white hover:bg-slate-50 hover:text-emerald-600 rounded-xl transition-all duration-300 border border-slate-200 shadow-sm hover:shadow active:scale-95"
               title="কপি করুন"
             >
               {copied ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
-              <span>{copied ? 'কপি হয়েছে' : 'কপি করুন'}</span>
+              <span>{copied ? 'কপি' : 'কপি'}</span>
+            </button>
+            <button
+              onClick={toggleBookmark}
+              className={`inline-flex w-full sm:w-auto items-center justify-center px-4 py-2.5 space-x-2 text-sm font-semibold rounded-xl transition-all duration-300 border shadow-sm hover:shadow active:scale-95 ${
+                isBookmarked 
+                  ? 'bg-emerald-50 text-emerald-600 border-emerald-200 hover:bg-emerald-100' 
+                  : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:text-emerald-600'
+              }`}
+              title="বুকমার্ক করুন"
+            >
+              <Bookmark className={`w-4 h-4 ${isBookmarked ? 'fill-emerald-500 text-emerald-500' : ''}`} />
+              <span>{isBookmarked ? 'সেইভড' : 'সেইভ'}</span>
             </button>
             <button
               onClick={handleShare}
