@@ -1,4 +1,4 @@
-import { differenceInDays, startOfDay, parseISO } from 'date-fns';
+import { parseISO } from 'date-fns';
 import hadithsData from '@/data/hadiths.json';
 
 export type Hadith = {
@@ -10,23 +10,23 @@ export type Hadith = {
   grade: string;
 };
 
-// Start epoch: We pick an arbitrary date in the past as the start point.
-// Jan 1, 2024
-const EPOCH_DATE = startOfDay(new Date('2024-01-01T00:00:00.000Z'));
-
 const hadiths = hadithsData as Hadith[];
 const totalHadiths = hadiths.length;
 
 export function getHadithForDate(date: Date): Hadith | null {
   if (totalHadiths === 0) return null;
 
-  const targetDate = startOfDay(date);
+  // 1. Convert the JS Date to Bangladesh Time (UTC+6)
+  // We do this by adding 6 hours to the UTC timestamp.
+  const timestamp = date.getTime();
+  const bstTime = timestamp + (6 * 60 * 60 * 1000);
   
-  // Number of days since epoch
-  const daysDiff = differenceInDays(targetDate, EPOCH_DATE);
+  // 2. Calculate the "Day Number" based on Bangladesh time.
+  // We divide by milliseconds in a day to get a unique integer for each day.
+  // Because we shifted the time by 6 hours, this division naturally rolls over exactly at midnight BST (18:00 UTC).
+  const MS_PER_DAY = 24 * 60 * 60 * 1000;
+  const daysDiff = Math.floor(bstTime / MS_PER_DAY);
   
-  // If the date is before epoch, we could either allow negative modulus or just set it to 0.
-  // We'll support negative dates by making modulo positive.
   let index = daysDiff % totalHadiths;
   if (index < 0) {
     index = (index + totalHadiths) % totalHadiths;
