@@ -35,7 +35,10 @@ export default function RootLayout({
               </div>
               <span className="font-bold text-xl tracking-wide">আজকের হাদিস</span>
             </Link>
-            <nav>
+            <nav className="flex items-center space-x-1 sm:space-x-2">
+              <Link href="/search" className="text-sm font-semibold text-slate-500 hover:text-emerald-600 hover:bg-emerald-50 px-4 py-2 rounded-xl transition-all">
+                খুঁজুন
+              </Link>
               <Link href="/archive" className="text-sm font-semibold text-slate-500 hover:text-emerald-600 hover:bg-emerald-50 px-4 py-2 rounded-xl transition-all">
                 আর্কাইভ
               </Link>
