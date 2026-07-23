@@ -75,7 +75,7 @@ export default function RootLayout({
                 href="https://www.facebook.com/masumbillahakhond" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="font-medium hover:text-emerald-600 transition-colors"
+                className="font-semibold text-[#009367] underline hover:text-emerald-700 transition-colors"
               >
                 Masum Billah Akhond
               </a>
