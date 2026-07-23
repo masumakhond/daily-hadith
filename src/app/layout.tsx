@@ -33,7 +33,7 @@ export default function RootLayout({
               <div className="bg-emerald-100/50 p-2 rounded-xl group-hover:bg-emerald-100 transition-colors">
                 <Book className="w-5 h-5 text-emerald-600" />
               </div>
-              <span className="font-bold text-xl tracking-wide">আজকের হাদিস</span>
+              <span className="hidden sm:block font-bold text-xl tracking-wide">আজকের হাদিস</span>
             </Link>
             <nav className="flex items-center space-x-1 sm:space-x-2">
               <Link href="/search" className="text-sm font-semibold text-slate-500 hover:text-emerald-600 hover:bg-emerald-50 px-3 py-2 rounded-xl transition-all">
