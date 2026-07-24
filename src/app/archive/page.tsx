@@ -3,6 +3,8 @@ import HadithCard from '@/components/HadithCard';
 import { format, subDays } from 'date-fns';
 import { bn } from 'date-fns/locale';
 
+export const dynamic = 'force-dynamic';
+
 export default function ArchivePage() {
   const today = new Date();
   

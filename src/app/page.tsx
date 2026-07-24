@@ -5,6 +5,8 @@ import { bn } from 'date-fns/locale';
 import Form from 'next/form';
 import { Search } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
 export default function Home() {
   const today = new Date();
   const hadith = getHadithForDate(today);
